@@ -5,6 +5,8 @@ redis:
 
 redisinsight:
   image: redislabs/redisinsight
+  links:
+    - redis
   ports:
     - 8001:8001
   restart: always
@@ -32,8 +34,6 @@ api:
   links:
     - redis
   environment:
-    API_USER: 2RXlri2xmx5i
-    API_PASS: jrHVKNuM8Zw4
     REDIS_PORT_6379_TCP_ADDR: redis
   restart: always
 
@@ -46,4 +46,7 @@ uchiwa:
   environment:
     HTTP_USER: hiro
     HTTP_PASS: nakamura
+    SENSU_NAME: server
+    API_PORT_4567_TCP_ADDR: api
+    API_PORT_4567_TCP_PORT: 4567
   restart: always

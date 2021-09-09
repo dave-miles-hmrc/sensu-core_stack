@@ -1,11 +1,13 @@
 {
+  "transport": {
+    "name": "redis",
+    "reconnect_on_error": true
+  },
   "redis":{
     "host":"{{ .Env.REDIS_PORT_6379_TCP_ADDR }}"
   },
   "api":{
     "host":"localhost",
-    "port":4567,
-    "user":"{{ .Env.API_USER }}",
-    "password":"{{ .Env.API_PASS }}"
+    "port":4567
   }
 }

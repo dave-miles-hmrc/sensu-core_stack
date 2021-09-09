@@ -3,9 +3,7 @@
     {
       "name": "{{ .Env.SENSU_NAME }}",
       "host": "{{ .Env.API_PORT_4567_TCP_ADDR }}",
-      "port": {{ .Env.API_PORT_4567_TCP_PORT }},
-      "user": "{{ .Env.API_ENV_API_USER }}",
-      "pass": "{{ .Env.API_ENV_API_PASS }}"
+      "port": {{ .Env.API_PORT_4567_TCP_PORT }}
     }
   ],
   "uchiwa": {

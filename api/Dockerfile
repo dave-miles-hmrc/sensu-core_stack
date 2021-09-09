@@ -1,6 +1,5 @@
 FROM hmrc/sensu:1.9
 
-ENV API_USER=WqNu4awAaNoP API_PASS=abcXvzSqoSw7
 EXPOSE 4567
 
 COPY conf.d /etc/sensu/conf.d/
