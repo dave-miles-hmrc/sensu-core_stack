@@ -12,14 +12,14 @@ redis:
   restart: always
 
 server:
-  image: anroots/sensu-server:example
+  image: hmrc/sensu-server:1.9
   links:
     - rabbitmq
     - redis
   restart: always
 
 client:
-  image: anroots/sensu-client:example
+  image: hmrc/sensu-client:1.9
   links:
     - rabbitmq
   environment:
@@ -28,7 +28,7 @@ client:
   restart: always
 
 api:
-  image: anroots/sensu-api
+  image: hmrc/sensu-api:1.9
   links:
     - rabbitmq
     - redis
@@ -38,7 +38,7 @@ api:
   restart: always
 
 uchiwa:
-  image: anroots/uchiwa
+  image: hmrc/uchiwa:1.4.1
   links:
     - api
   ports:

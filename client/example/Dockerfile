@@ -1,4 +1,4 @@
-FROM anroots/sensu-client:0.3.0
+FROM hmrc/sensu-client:1.9
 
 # Install sensu plugins that perform system resource checks
 RUN apt-get update && \
