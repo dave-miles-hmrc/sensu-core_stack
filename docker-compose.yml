@@ -1,40 +1,40 @@
-rabbitmq:
-  image: tutum/rabbitmq
-  environment:
-    RABBITMQ_USER: NI4EvqdOy3RT
-    RABBITMQ_PASS: aEW5qDg3qPBh
-  restart: always
 
 redis:
-  image: tutum/redis
-  environment:
-    REDIS_PASS: WQuxUloeZomF
+  image: redis:6.2
+  restart: always
+
+redisinsight:
+  image: redislabs/redisinsight
+  ports:
+    - 8001:8001
   restart: always
 
 server:
   image: hmrc/sensu-server:1.9
   links:
-    - rabbitmq
     - redis
   restart: always
+  environment:
+    REDIS_PORT_6379_TCP_ADDR: redis
 
 client:
   image: hmrc/sensu-client:1.9
   links:
-    - rabbitmq
+    - redis
   environment:
     # Specify Sensu subscriptions for the client as a CSV string
     SUBSCRIPTIONS: development,web
+    REDIS_PORT_6379_TCP_ADDR: redis
   restart: always
 
 api:
   image: hmrc/sensu-api:1.9
   links:
-    - rabbitmq
     - redis
   environment:
     API_USER: 2RXlri2xmx5i
     API_PASS: jrHVKNuM8Zw4
+    REDIS_PORT_6379_TCP_ADDR: redis
   restart: always
 
 uchiwa:
