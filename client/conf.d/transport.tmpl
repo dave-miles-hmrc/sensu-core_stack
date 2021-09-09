@@ -1,0 +1,9 @@
+{
+   "transport": {
+    "name": "redis",
+    "reconnect_on_error": true
+  },
+  "redis":{
+    "host":"{{ .Env.REDIS_PORT_6379_TCP_ADDR }}"
+  }
+}
