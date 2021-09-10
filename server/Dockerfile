@@ -1,4 +1,4 @@
-FROM hmrc/sensu:1.9
+FROM dave-miles-hmrc/sensu:1.9
 
 COPY conf.d /etc/sensu/conf.d/
 

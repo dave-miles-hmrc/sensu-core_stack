@@ -1,4 +1,4 @@
-FROM hmrc/sensu:1.9
+FROM dave-miles-hmrc/sensu:1.9
 
 EXPOSE 4567
 

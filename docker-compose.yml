@@ -12,7 +12,7 @@ redisinsight:
   restart: always
 
 server:
-  image: hmrc/sensu-server:1.9
+  image: dave-miles-hmrc/sensu-server:1.9
   links:
     - redis
   restart: always
@@ -20,7 +20,7 @@ server:
     REDIS_PORT_6379_TCP_ADDR: redis
 
 client:
-  image: hmrc/sensu-client:1.9
+  image: dave-miles-hmrc/sensu-client:1.9
   links:
     - redis
   environment:
@@ -30,7 +30,7 @@ client:
   restart: always
 
 api:
-  image: hmrc/sensu-api:1.9
+  image: dave-miles-hmrc/sensu-api:1.9
   links:
     - redis
   environment:
@@ -38,7 +38,7 @@ api:
   restart: always
 
 uchiwa:
-  image: hmrc/uchiwa:1.4.1
+  image: dave-miles-hmrc/uchiwa:1.4.1
   links:
     - api
   ports:
