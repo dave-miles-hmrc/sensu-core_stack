@@ -1,25 +1,15 @@
-# Sensu Stack [![Travis](https://img.shields.io/travis/anroots/sensu-stack.svg)](https://travis-ci.org/anroots/sensu-stack) [![License](https://img.shields.io/badge/license-MIT-brightgreen.svg)](https://github.com/anroots/sensu-stack/blob/master/LICENSE.md) [![Docker Pulls](https://img.shields.io/docker/pulls/anroots/sensu.svg)](https://hub.docker.com/r/anroots/sensu)
-
-This is the [Sensu monitoring framework](https://sensuapp.org), running in Docker containers, with [Uchiwa](https://github.com/sensu/uchiwa) as the web-based frontend.
+# Sensu Core Stack
+This is the [Sensu Core](https://docs.sensu.io/sensu-core/latest/) monitoring framework running in Docker containers.
 
 > Sensu is often described as the “monitoring router”. Essentially, Sensu takes the results of “check” scripts run across many systems, and if certain conditions are met, passes their information to one or more “handlers”. Checks are used, for example, to determine if a service like Apache is up or down. - [sensuapp.org](https://sensuapp.org/docs/latest/overview)
 
-## Install
+## Build
+```make build-sensu build-uchiwa```
 
-This project is opinionated towards [Docker Cloud](https://cloud.docker.com) deployment.
+## Deploy
+```make compose-up```
 
-### Deploy to Docker Cloud
-
-Press the button below to deploy this [stackfile](https://docs.docker.com/docker-cloud/feature-reference/stacks/) to your Docker Cloud account.
-
-[![Deploy to Docker Cloud](https://files.cloud.docker.com/images/deploy-to-dockercloud.svg)](https://cloud.docker.com/stack/deploy)
-
-### Deploy to Other Docker Capable Hosts
-
-Use Docker Compose to deploy the stack to any Docker capable host.
-
-- Place the contents of [docker-compose.yml](docker-compose.yml) into your server
-- Run `docker-compose up`
+NOTE: Sensu transport is [redis](https://hub.docker.com/_/redis) only with no authentication; [redislabs/redisinsight](https://hub.docker.com/r/redislabs/redisinsight) is enabled
 
 ## Usage
 
@@ -42,32 +32,7 @@ COPY conf.d /etc/sensu/conf.d
 
 ### Add Your Own Plugins
 
-[sensu-plugins.io](http://sensu-plugins.io/) lists many Sensu plugins that can be used to perform different checks. To install a new plugin, create a new Docker image (extending `anroots/sensu-client`) and [install the plugins you want to use](https://github.com/anroots/sensu-stack/blob/master/client/example/Dockerfile#L6).
-
-```Dockerfile
-FROM anroots/sensu-client:0.3.0
-
-# Install sensu plugins that perform system resource checks
-RUN apt-get update && \
-	apt-get install -y bc build-essential && \
-	sensu-install --verbose -P memory-checks,cpu-checks,disk-checks && \
-	apt-get purge -y build-essential && \
-	apt-get autoremove -y && \
-	apt-get clean -y && \
-	rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
-```
-
-## Image Structure
-
-- `debian`
-  - `anroots/sensu` - base image for Sensu
-    - `anroots/sensu-api`
-    - `anroots/sensu-client` - barebones setup for Sensu client (no checks)
-      - `anroots/sensu-client:example` - Sensu client which includes basic host-level checks (memory, CPU, disk usage)
-    - `anroots/sensu-server` - barebones setup for Sensu server (no checks)
-      - `anroots/sensu-client:example` - Sensu server with one scheduled check
-- `uchiwa/uchiwa`
-  - `anroots/uchiwa`
+[sensu-plugins](https://github.com/sensu-plugins) lists many Sensu plugins that can be used to perform different checks. To install a new plugin, typically add to [sensu/Dockerfile](./sensu/Dockerfile).
 
 ### Sending Alerts
 
@@ -131,7 +96,7 @@ Please see [CONTRIBUTING](CONTRIBUTING.md) for details.
 
 ## Security
 
-If you discover any security related issues, please email ando@sqroot.eu instead of using the issue tracker.
+If you discover any security related issues, please fork, fix and raise a pull request
 
 ## Credits
 

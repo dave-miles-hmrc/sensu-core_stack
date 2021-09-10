@@ -1,4 +1,4 @@
-FROM hmrc/sensu-client:1.9
+FROM dave-miles-hmrc/sensu-client:1.9
 
 # Install sensu plugins that perform system resource checks
 RUN apt-get update && \

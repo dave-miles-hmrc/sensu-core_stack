@@ -1,4 +1,4 @@
-FROM anroots/sensu-client:example
+FROM dave-miles-hmrc/sensu-client:example
 
 # Include Nagios plugins in the PATH
 ENV PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/opt/sensu/embedded/bin:/opt/nagios/plugins
