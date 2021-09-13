@@ -1,6 +1,7 @@
 {
   "checks":{
     "memory-usage":{
+      "runbook_url": "https://example.com/runbook/memory-usage",
       "command":"check-memory-percent.rb -w 70 -c 85",
       "standalone":true,
       "occurrences":2,
@@ -8,6 +9,10 @@
       "interval":10
     },
     "cpu-usage":{
+      "services": [
+        "user-management-dod-1397.poc.sandbox.tools.tax.service.gov.uk",
+        "user-management.tools.tax.service.gov.uk"
+      ],
       "command":"check-cpu.rb -w 70 -c 85",
       "standalone":true,
       "occurrences":3,
