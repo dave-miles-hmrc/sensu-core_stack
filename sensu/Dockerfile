@@ -16,6 +16,8 @@ RUN echo "install: --no-rdoc --no-ri" >> /etc/gemrc \
 		sensu-plugins-http \
 		sensu-plugins-graphite \
 		sensu-plugins-network-checks \
+		sensu-plugins-cpu-checks \
+		sensu-plugins-memory-checks \
 		sensu-plugins-disk-checks \
 		sensu-plugins-process-checks \
 		sensu-extensions-check-dependencies \

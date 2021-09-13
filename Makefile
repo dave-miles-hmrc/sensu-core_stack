@@ -9,6 +9,7 @@ build-sensu:
 	cd server && docker build -t $(TAG_LOCAL_REPOSITORY)/sensu-server:1.9 -t dave-miles-hmrc/sensu-server:1.9 .
 	cd client && docker build -t $(TAG_LOCAL_REPOSITORY)/sensu-client:1.9 -t dave-miles-hmrc/sensu-client:1.9 .
 	cd api    && docker build -t $(TAG_LOCAL_REPOSITORY)/sensu-api:1.9    -t dave-miles-hmrc/sensu-api:1.9 .
+	cd client/example && docker build -t $(TAG_LOCAL_REPOSITORY)/sensu-client-example:1.9 -t dave-miles-hmrc/sensu-client-example:1.9 .
 
 .PHONY: build-uchiwa
 build-uchiwa:
@@ -19,6 +20,7 @@ push-to-local:
 	docker push $(TAG_LOCAL_REPOSITORY)/sensu:1.9
 	docker push $(TAG_LOCAL_REPOSITORY)/sensu-server:1.9
 	docker push $(TAG_LOCAL_REPOSITORY)/sensu-client:1.9
+	docker push $(TAG_LOCAL_REPOSITORY)/sensu-client-example:1.9
 	docker push $(TAG_LOCAL_REPOSITORY)/sensu-api:1.9
 	docker push $(TAG_LOCAL_REPOSITORY)/uchiwa:1.4.1
 

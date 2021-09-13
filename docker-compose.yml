@@ -29,6 +29,16 @@ client:
     REDIS_PORT_6379_TCP_ADDR: redis
   restart: always
 
+client-example:
+  image: dave-miles-hmrc/sensu-client-example:1.9
+  links:
+    - redis
+  environment:
+    # Specify Sensu subscriptions for the client as a CSV string
+    SUBSCRIPTIONS: development,web
+    REDIS_PORT_6379_TCP_ADDR: redis
+  restart: always
+
 api:
   image: dave-miles-hmrc/sensu-api:1.9
   links:

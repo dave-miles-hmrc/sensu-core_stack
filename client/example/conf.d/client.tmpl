@@ -1,7 +1,6 @@
 {
   "client":{
-    "name":"{{ if .Env.DOCKERCLOUD_NODE_FQDN }}{{ .Env.DOCKERCLOUD_NODE_FQDN }}{{ else }}{{ .Env.HOSTNAME }}{{ end }}",
-    "address":"{{ if .Env.DOCKERCLOUD_IP_ADDRESS }}{{ .Env.DOCKERCLOUD_IP_ADDRESS }}{{ else }}{{ .Env.HOSTNAME }}{{ end }}",
+    "name":"{{ .Env.HOSTNAME }}",
     "subscriptions":[
       "all"{{if .Env.SUBSCRIPTIONS}}{{$subscriptions := split .Env.SUBSCRIPTIONS ","}}{{ range $subscription := $subscriptions }},"{{ $subscription }}"{{end}}{{end}}
     ]
